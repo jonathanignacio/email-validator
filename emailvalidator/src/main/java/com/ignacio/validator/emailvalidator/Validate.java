@@ -8,27 +8,54 @@ package com.ignacio.validator.emailvalidator;
 */
 public class Validate {
 	
+	String[] domains = {"hotmail.com", "mail.com", "gmail.com"};
 	/**
 	* 
-	* Method for testing if an email address is valid. Only tests if the email contains 
-	* a single '@' character and at least one '.' character.
-	* @param email - A string to be tested as a valid email address.
+	* Method for testing if an email address is valid. 
+	* @param email - an email to test validity.
+	* @return number of passing rules.
 	* @author  Jonathan Ignacio
 	*/
-	public static boolean ValidateEmail(String email){
+	public static int validate(String email){
+		int rules = 0;
+		if(validateAt(email))
+			rules++;
+		if(validateDot(email))
+			rules++;
+		return rules;
+		
+	}
+	
+	/**
+	 * Validates that an email only has a single '@' character.
+	 * 
+	 * @param email - an email to check.
+	 * @return True if there is a single '@' character.
+	 */
+	public static boolean validateAt(String email){
 		char[] emailTest = email.toCharArray();
-		int atNum = 0, dotNum = 0;
+		int atNum = 0;
 		for(int i=0; i < emailTest.length; i++){
 			if(emailTest[i] == '@')
 				atNum++;
-			else if(emailTest[i] == '.'){
-				dotNum++;
 			}
-		}
-		if(atNum == 1 && dotNum > 0){
+		if(atNum == 1)
 			return true;
-		}
 		else
 			return false;
 	}
+	
+	/**
+	 * Validates that an email only has a single '@' character.
+	 * 
+	 * @param email - an email to check.
+	 * @return True if the email contains one or more '.' characters.
+	 */
+	public static boolean validateDot(String email){
+		if(email.contains("."))	
+			return true;
+		else
+			return false;
+	}
+	
 }

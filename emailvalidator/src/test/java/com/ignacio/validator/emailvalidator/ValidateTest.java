@@ -10,6 +10,9 @@ import junit.framework.TestSuite;
 public class ValidateTest 
     extends TestCase
 {
+	
+	String[] domains = {"hotmail.com", "mail.com", "gmail.com"};
+	
     /**
      * Create the test case
      *
@@ -29,13 +32,30 @@ public class ValidateTest
     }
 
     /**
-     * Verify email test, passes with given constraints.
+     * Verify that {@link validate} correctly displays the number of passing tests
      */
-    public void testValidateEmail()
-    {
-        assertTrue(Validate.ValidateEmail("test@mail.com")); //test for @ and .
-        assertFalse(Validate.ValidateEmail("failthis")); //test for failing case
-        assertFalse(Validate.ValidateEmail("@@mail.com")); //test for more than 2 @'s
-        assertFalse(Validate.ValidateEmail("nodot@")); //test for no dot
+    public void testValidate(){
+    	assertEquals(0, Validate.validate("completefailure"));
+    	assertEquals(1, Validate.validate("partial@failure"));
+    	assertEquals(1, Validate.validate("partial.failure"));
+    	assertEquals(2, Validate.validate("initial@success.io"));
+    }
+    
+    /**
+     * Verify that the check for '@' characters functions correctly
+     */
+    public void testValidateAt(){
+    	assertTrue(Validate.validateAt("this@"));
+    	assertFalse(Validate.validateAt("fail"));
+    }
+    
+    
+    /**
+     * Verify that the check for '.' characters functions correctly.
+     */
+    public void testValidateDot(){
+    	assertTrue(Validate.validateDot("...pass"));
+    	assertTrue(Validate.validateDot(".pass"));
+    	assertFalse(Validate.validateDot("fail"));
     }
 }
