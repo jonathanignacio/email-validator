@@ -29,10 +29,13 @@ public class ValidateTest
     }
 
     /**
-     * Verify email test, passes with given constraints
+     * Verify email test, passes with given constraints.
      */
-    public void testApp()
+    public void testValidateEmail()
     {
-        assertTrue(Validate.ValidateEmail("test@mail.com"));
+        assertTrue(Validate.ValidateEmail("test@mail.com")); //test for @ and .
+        assertFalse(Validate.ValidateEmail("failthis")); //test for failing case
+        assertFalse(Validate.ValidateEmail("@@mail.com")); //test for more than 2 @'s
+        assertFalse(Validate.ValidateEmail("nodot@")); //test for no dot
     }
 }
