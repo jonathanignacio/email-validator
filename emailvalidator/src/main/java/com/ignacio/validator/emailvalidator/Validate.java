@@ -66,6 +66,13 @@ public class Validate {
 	 * @return True if the email's domain is contained within the list of valid domains.
 	 */
 	public static boolean validateEmailDomain(String email, String[] domains){
-		return false; //initial failure
+		String[] parts = email.split("@");
+		String domain = parts[1];
+		for(String test : domains){
+			if(test.equals(domain)){
+				return true;
+			}
+		}
+		return false;
 	}
 }
