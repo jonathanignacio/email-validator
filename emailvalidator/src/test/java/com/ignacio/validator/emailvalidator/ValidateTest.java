@@ -38,6 +38,7 @@ public class ValidateTest
     	assertEquals(0, Validate.validate("cooooooooooooooooooooooooooooooooooooompletefailure")); 
     	assertEquals(2, Validate.validate("partial@failure")); //has @
     	assertEquals(2, Validate.validate("partial.failure")); //has .
+    	assertEquals(3, Validate.validate("garbage.@"));
     	assertEquals(3, Validate.validate("short@sweet.com")); //correct length, wrong domain
     	assertEquals(3, Validate.validate("gettingtherebutnoooooooooooooooooootquite@gmail.com")); //correct domain, too long
     	assertEquals(4, Validate.validate("theperfectemail@gmail.com")); 
