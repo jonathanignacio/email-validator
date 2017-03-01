@@ -8,7 +8,7 @@ package com.ignacio.validator.emailvalidator;
 */
 public class Validate {
 	
-	String[] domains = {"hotmail.com", "mail.com", "gmail.com"};
+	static String[] domains = {"hotmail.com", "mail.com", "gmail.com"};
 	/**
 	* 
 	* Method for testing if an email address is valid based on available rules. 
@@ -18,10 +18,16 @@ public class Validate {
 	*/
 	public static int validate(String email){
 		int rules = 0;
-		if(validateAt(email))
-			rules++;
 		if(validateDot(email))
 			rules++;
+		if(validateAt(email)){
+			rules++;
+			if(validateEmailDomain(email, domains)) //have already verfied that it contains a single '@'character
+				rules++;
+		}
+		if(validateEmailLength(email))
+			rules++;
+
 		return rules;
 		
 	}
@@ -82,6 +88,6 @@ public class Validate {
 	 * @return True if the email's character count is less than 50 altogether
 	 */
 	public static boolean validateEmailLength(String email) {
-		return false;
+		return email.length() <= 50;
 	}
 }
