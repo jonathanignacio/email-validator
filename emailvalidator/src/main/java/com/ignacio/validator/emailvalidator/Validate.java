@@ -76,7 +76,7 @@ public class Validate {
 		char[] check = email.toCharArray();
 		for(int i = 0; i < check.length; i++)
 			if(check[i] == '@'){
-				if(i + 1 <= check.length)
+				if(i + 1 < check.length)
 					hasDomain = true; //considers a domain any character that occurs after an '@' character
 			}
 		if(hasDomain){
