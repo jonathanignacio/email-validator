@@ -66,6 +66,7 @@ public class ValidateTest
      */
     public void testValidateEmailDomain(){
     	assertTrue(Validate.validateEmailDomain("test@gmail.com", domains)); //gmail.com is a valid domain
+    	assertFalse(Validate.validateEmailDomain("nodomain@", domains)); //dpes not have a domain entered, just an '@'
     	assertFalse(Validate.validateEmailDomain("bad@domain", domains));
     }
     
