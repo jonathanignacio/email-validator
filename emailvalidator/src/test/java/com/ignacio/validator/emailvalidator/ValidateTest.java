@@ -58,4 +58,12 @@ public class ValidateTest
     	assertTrue(Validate.validateDot(".pass"));
     	assertFalse(Validate.validateDot("fail"));
     }
+    
+    /**
+     * Verify that the check for valid domains functions correctly
+     */
+    public void testValidateEmailDomain(){
+    	assertTrue(Validate.validateEmailDomain("test@gmail.com", domains)); //gmail.com is a valid domain
+    	assertFalse(Validate.validateEmailDomain("nodomaingiven", domains));
+    }
 }

@@ -58,4 +58,14 @@ public class Validate {
 			return false;
 	}
 	
+	/**
+	 * Validates that an email only has a single '@' character.
+	 * 
+	 * @param email - an email to check.
+	 * @param domains - list of valid domain.
+	 * @return True if the email's domain is contained within the list of valid domains.
+	 */
+	public static boolean validateEmailDomain(String email, String[] domains){
+		return false; //initial failure
+	}
 }
