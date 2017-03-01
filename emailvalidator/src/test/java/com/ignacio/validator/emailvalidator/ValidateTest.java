@@ -29,7 +29,7 @@ public class ValidateTest
     }
 
     /**
-     * Verify email test (should fail)
+     * Verify email test, passes with given constraints
      */
     public void testApp()
     {

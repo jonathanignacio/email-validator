@@ -10,7 +10,8 @@ public class Validate {
 	
 	/**
 	* 
-	* Method for testing if an email address is valid.
+	* Method for testing if an email address is valid. Only tests if the email contains 
+	* a single '@' character and at least one '.' character.
 	* @param email - A string to be tested as a valid email address.
 	* @author  Jonathan Ignacio
 	*/
