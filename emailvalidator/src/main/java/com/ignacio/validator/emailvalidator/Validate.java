@@ -8,26 +8,32 @@ package com.ignacio.validator.emailvalidator;
 */
 public class Validate {
 	
-	String[] domains = {"hotmail.com", "mail.com", "gmail.com"};
+	static String[] domains = {"hotmail.com", "mail.com", "gmail.com"};
 	/**
 	* 
-	* Method for testing if an email address is valid. 
+	* Method for testing if an email address is valid based on available rules. 
 	* @param email - an email to test validity.
 	* @return number of passing rules.
 	* @author  Jonathan Ignacio
 	*/
 	public static int validate(String email){
 		int rules = 0;
-		if(validateAt(email))
-			rules++;
 		if(validateDot(email))
 			rules++;
+		if(validateAt(email)){
+			rules++;
+			if(validateEmailDomain(email, domains)) //have already verfied that it contains a single '@'character
+				rules++;
+		}
+		if(validateEmailLength(email))
+			rules++;
+
 		return rules;
 		
 	}
 	
 	/**
-	 * Validates that an email only has a single '@' character.
+	 * Validates that an email address only has a single '@' character.
 	 * 
 	 * @param email - an email to check.
 	 * @return True if there is a single '@' character.
@@ -46,7 +52,7 @@ public class Validate {
 	}
 	
 	/**
-	 * Validates that an email only has a single '@' character.
+	 * Validates that an email address only has a single '@' character.
 	 * 
 	 * @param email - an email to check.
 	 * @return True if the email contains one or more '.' characters.
@@ -58,4 +64,30 @@ public class Validate {
 			return false;
 	}
 	
+	/**
+	 * Validates that an email address only has a single '@' character.
+	 * 
+	 * @param email - an email to check.
+	 * @param domains - list of valid domain.
+	 * @return True if the email's domain is contained within the list of valid domains.
+	 */
+	public static boolean validateEmailDomain(String email, String[] domains){
+		String[] parts = email.split("@");
+		String domain = parts[1];
+		for(String test : domains){
+			if(test.equals(domain)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Validates that an email address has less than 50 characters.
+	 * @param email - an email to check.
+	 * @return True if the email's character count is less than 50 altogether
+	 */
+	public static boolean validateEmailLength(String email) {
+		return email.length() <= 50;
+	}
 }

@@ -11,12 +11,12 @@ public class ValidateTest
     extends TestCase
 {
 	
-	String[] domains = {"hotmail.com", "mail.com", "gmail.com"};
+	static String[] domains = {"hotmail.com", "mail.com", "gmail.com"};
 	
     /**
-     * Create the test case
+     * Create the test case.
      *
-     * @param testName name of the test case
+     * @param testName name of the test case.
      */
     public ValidateTest( String testName )
     {
@@ -24,7 +24,7 @@ public class ValidateTest
     }
 
     /**
-     * @return the suite of tests being tested
+     * @return the suite of tests being tested.
      */
     public static Test suite()
     {
@@ -32,17 +32,19 @@ public class ValidateTest
     }
 
     /**
-     * Verify that {@link validate} correctly displays the number of passing tests
+     * Verify that {@link validate} correctly displays the number of passing tests.
      */
     public void testValidate(){
-    	assertEquals(0, Validate.validate("completefailure"));
-    	assertEquals(1, Validate.validate("partial@failure"));
-    	assertEquals(1, Validate.validate("partial.failure"));
-    	assertEquals(2, Validate.validate("initial@success.io"));
+    	assertEquals(0, Validate.validate("cooooooooooooooooooooooooooooooooooooompletefailure")); 
+    	assertEquals(2, Validate.validate("partial@failure")); //has @
+    	assertEquals(2, Validate.validate("partial.failure")); //has .
+    	assertEquals(3, Validate.validate("short@sweet.com")); //correct length, wrong domain
+    	assertEquals(3, Validate.validate("gettingtherebutnoooooooooooooooooootquite@gmail.com")); //correct domain, too long
+    	assertEquals(4, Validate.validate("theperfectemail@gmail.com")); 
     }
     
     /**
-     * Verify that the check for '@' characters functions correctly
+     * Verify that the check for '@' characters functions correctly.
      */
     public void testValidateAt(){
     	assertTrue(Validate.validateAt("this@"));
@@ -57,5 +59,21 @@ public class ValidateTest
     	assertTrue(Validate.validateDot("...pass"));
     	assertTrue(Validate.validateDot(".pass"));
     	assertFalse(Validate.validateDot("fail"));
+    }
+    
+    /**
+     * Verify that the check for valid domains functions correctly.
+     */
+    public void testValidateEmailDomain(){
+    	assertTrue(Validate.validateEmailDomain("test@gmail.com", domains)); //gmail.com is a valid domain
+    	assertFalse(Validate.validateEmailDomain("bad@domain", domains));
+    }
+    
+    /**
+     * Verify that the check for valid email address length functions correctly.
+     */
+    public void testValidateEmailLength(){
+    	assertTrue(Validate.validateEmailLength("shouldbe@good.com"));
+    	assertFalse(Validate.validateEmailLength("loooooooooooooooooooooooooooooooooooooooong@lol.com")); //very long email (over 50 characters)
     }
 }
