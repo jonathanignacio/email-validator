@@ -11,7 +11,7 @@ public class Validate {
 	String[] domains = {"hotmail.com", "mail.com", "gmail.com"};
 	/**
 	* 
-	* Method for testing if an email address is valid. 
+	* Method for testing if an email address is valid based on available rules. 
 	* @param email - an email to test validity.
 	* @return number of passing rules.
 	* @author  Jonathan Ignacio
@@ -27,7 +27,7 @@ public class Validate {
 	}
 	
 	/**
-	 * Validates that an email only has a single '@' character.
+	 * Validates that an email address only has a single '@' character.
 	 * 
 	 * @param email - an email to check.
 	 * @return True if there is a single '@' character.
@@ -46,7 +46,7 @@ public class Validate {
 	}
 	
 	/**
-	 * Validates that an email only has a single '@' character.
+	 * Validates that an email address only has a single '@' character.
 	 * 
 	 * @param email - an email to check.
 	 * @return True if the email contains one or more '.' characters.
@@ -59,7 +59,7 @@ public class Validate {
 	}
 	
 	/**
-	 * Validates that an email only has a single '@' character.
+	 * Validates that an email address only has a single '@' character.
 	 * 
 	 * @param email - an email to check.
 	 * @param domains - list of valid domain.
@@ -73,6 +73,15 @@ public class Validate {
 				return true;
 			}
 		}
+		return false;
+	}
+	
+	/**
+	 * Validates that an email address has less than 50 characters.
+	 * @param email - an email to check.
+	 * @return True if the email's character count is less than 50 altogether
+	 */
+	public static boolean validateEmailLength(String email) {
 		return false;
 	}
 }

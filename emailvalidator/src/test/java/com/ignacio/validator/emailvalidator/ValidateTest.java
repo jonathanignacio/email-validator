@@ -66,4 +66,9 @@ public class ValidateTest
     	assertTrue(Validate.validateEmailDomain("test@gmail.com", domains)); //gmail.com is a valid domain
     	assertFalse(Validate.validateEmailDomain("bad@domain", domains));
     }
+    
+    public void testValidateEmailLength(){
+    	assertTrue(Validate.validateEmailLength("shouldbe@good.com"));
+    	assertFalse(Validate.validateEmailLength("loooooooooooooooooooooooooooooooooooooooong@lol.com")); //very long email (over 50 characters)
+    }
 }
