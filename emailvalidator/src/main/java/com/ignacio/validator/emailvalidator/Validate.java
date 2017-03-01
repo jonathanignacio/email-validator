@@ -72,11 +72,20 @@ public class Validate {
 	 * @return True if the email's domain is contained within the list of valid domains.
 	 */
 	public static boolean validateEmailDomain(String email, String[] domains){
-		String[] parts = email.split("@");
-		String domain = parts[1];
-		for(String test : domains){
-			if(test.equals(domain)){
-				return true;
+		boolean hasDomain = false;
+		char[] check = email.toCharArray();
+		for(int i = 0; i < check.length; i++)
+			if(check[i] == '@'){
+				if(i + 1 <= check.length)
+					hasDomain = true; //considers a domain any character that occurs after an '@' character
+			}
+		if(hasDomain){
+			String[] parts = email.split("@");
+			String domain = parts[1];
+			for(String test : domains){
+				if(test.equals(domain)){
+					return true;
+				}
 			}
 		}
 		return false;
