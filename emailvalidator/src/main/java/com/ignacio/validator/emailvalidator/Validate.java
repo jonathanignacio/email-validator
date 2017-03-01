@@ -15,6 +15,19 @@ public class Validate {
 	* @author  Jonathan Ignacio
 	*/
 	public static boolean ValidateEmail(String email){
-		return false;
+		char[] emailTest = email.toCharArray();
+		int atNum = 0, dotNum = 0;
+		for(int i=0; i < emailTest.length; i++){
+			if(emailTest[i] == '@')
+				atNum++;
+			else if(emailTest[i] == '.'){
+				dotNum++;
+			}
+		}
+		if(atNum == 1 && dotNum > 0){
+			return true;
+		}
+		else
+			return false;
 	}
 }
